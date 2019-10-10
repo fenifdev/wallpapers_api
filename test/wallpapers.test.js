@@ -47,4 +47,16 @@ describe("wallpapers", function (done) {
               done();
             });
     })
+
+    it("returns a wallpaper created", function(done) {
+        var wallpaper = {title: 'wallpaper'}
+        request(app).post('/api/wallpapers')
+            .send(wallpaper)
+            .end(function(err, res) {
+              expect(res.statusCode).to.equal(200);
+              expect(res.body).to.be.an('object');
+              expect(res.body.title).to.equal(wallpaper.title);
+              done();
+            });
+    })
 })

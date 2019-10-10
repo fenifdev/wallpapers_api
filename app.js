@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 var env = process.env.NODE_ENV || 'development';
 var config = require('./config/' + env);
 
+app.use(bodyParser.json());
+
 Wallpaper = require('./models/wallpaper');
 
 // Connect to Mongoose
@@ -21,6 +23,17 @@ app.get('/api/wallpapers', (req, res) => {
             throw err;
         }
         res.json(wallpapers);
+    });
+});
+
+app.post('/api/wallpapers', (req, res) => {
+    var wallpaper = req.body;
+
+    Wallpaper.addWallpaper(wallpaper, (err, wallpaper) => {
+        if(err){
+            throw err;
+        }
+        res.json(wallpaper);
     });
 });
 
