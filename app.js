@@ -37,6 +37,15 @@ app.post('/api/wallpapers', (req, res) => {
     });
 });
 
+app.get('/api/wallpapers/:_id', (req, res) => {
+    Wallpaper.getWallpaperById(req.params._id, (err, wallpaper) => {
+        if(err){
+            throw err;
+        }
+        res.json(wallpaper);
+    });
+});
+
 if(process.env.NODE_ENV=='test') {
     module.exports = app;
 } else {

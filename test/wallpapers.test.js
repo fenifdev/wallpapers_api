@@ -59,4 +59,22 @@ describe("wallpapers", function (done) {
               done();
             });
     })
+
+    it("returns a wallpaper when the wallpaper exists in the database", function(done) {
+        var wallpaper = {title: 'wallpaper'}
+
+        Wallpaper.addWallpaper(wallpaper, function(err, wallpaper) {
+            if(err){
+                console.log(err);
+            }
+
+            request(app).get('/api/wallpapers/' + wallpaper._id)
+                .end(function(err, res) {
+                  expect(res.statusCode).to.equal(200);
+                  expect(res.body).to.be.an('object');
+                  expect(res.body.title).to.equal(wallpaper.title);
+                  done();
+                });
+        });
+    });
 })

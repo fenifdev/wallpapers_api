@@ -24,6 +24,11 @@ module.exports.addWallpaper = (wallpaper, callback) => {
     Wallpaper.create(wallpaper, callback);
 }
 
+// getWallpaperById
+module.exports.getWallpaperById = (id, callback) => {
+    Wallpaper.findById(id, callback);
+}
+
 module.exports.deleteAll = (callback) => {
     Wallpaper.deleteMany({}, callback);
 }
