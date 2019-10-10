@@ -18,3 +18,12 @@ const Wallpaper = module.exports = mongoose.model('Wallpaper', wallpaperSchema);
 module.exports.getWallpapers = (callback, limit) => {
     Wallpaper.find(callback).limit(limit);
 }
+
+// Add Wallpaper
+module.exports.addWallpaper = (wallpaper, callback) => {
+    Wallpaper.create(wallpaper, callback);
+}
+
+module.exports.deleteAll = (callback) => {
+    Wallpaper.deleteMany({}, callback);
+}
