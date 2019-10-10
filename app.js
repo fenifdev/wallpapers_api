@@ -46,6 +46,16 @@ app.get('/api/wallpapers/:_id', (req, res) => {
     });
 });
 
+app.delete('/api/wallpapers/:_id', (req, res) => {
+    var id = req.params._id;
+    Wallpaper.removeWallpaper(id, (err, wallpaper) => {
+        if(err){
+            throw err;
+        }
+        res.json(wallpaper);
+    });
+});
+
 if(process.env.NODE_ENV=='test') {
     module.exports = app;
 } else {

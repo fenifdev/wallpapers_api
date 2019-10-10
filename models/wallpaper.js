@@ -29,6 +29,12 @@ module.exports.getWallpaperById = (id, callback) => {
     Wallpaper.findById(id, callback);
 }
 
+// Delete Wallpaper
+module.exports.removeWallpaper = (id, callback) => {
+    var query = {_id: id};
+    Wallpaper.deleteOne(query, callback);
+}
+
 module.exports.deleteAll = (callback) => {
     Wallpaper.deleteMany({}, callback);
 }
