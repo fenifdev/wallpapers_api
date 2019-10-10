@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 Wallpaper = require('./models/wallpaper');
 
 // Connect to Mongoose
-mongoose.connect('mongodb://mongo/wallpapers');
+mongoose.connect('mongodb://mongo/wallpapers_test');
 var db = mongoose.connection;
 
 app.get('/', (req, res) => {
