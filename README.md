@@ -9,6 +9,14 @@ How to install:
 ```bash
 npm install
 ```
+- Create the mongo databases
+wallpapers_test
+wallpapers
+
+- Create the collections
+wallpapers_test > wallpapers
+wallpapers > wallpapers
+
 
 How to test:
 ```bash
