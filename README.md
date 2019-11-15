@@ -5,7 +5,7 @@ A Wallpapers api made in Node.js and express, following TDD.
 How to install:
 
 - Clone the repository.
-- run go install
+- run npm install
 ```bash
 npm install
 ```
