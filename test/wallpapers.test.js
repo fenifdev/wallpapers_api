@@ -8,18 +8,23 @@ Wallpaper = require('../models/wallpaper');
 
 var mongoose = require('mongoose');
 var env = process.env.NODE_ENV || 'development';
+var env = 'development';
 var config = require('../config/' + env);
 // Connect to Mongoose
-mongoose.connect(config.mongourl);
+mongoose.connect(config.mongourl, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=> console.log('Connected to mongodb'))
+.catch(err => console.log(err));
 var db = mongoose.connection;
 
 describe("wallpapers", function (done) {
     it("returns an empty array when there is no wallpapers in the db", function(done) {
+        //this.timeout(10000);
         Wallpaper.deleteAll(function(err) {
             if(err){
                 console.log(err);
             }
         });
+
         request(app).get('/api/wallpapers')
             .expect(200)
             .expect([], done)
@@ -37,15 +42,17 @@ describe("wallpapers", function (done) {
             if(err){
                 console.log(err);
             }
+
+            request(app).get('/api/wallpapers')
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    expect(res.body).to.be.an('array');
+                    expect(res.body[0].title).to.equal(wallpaper.title);
+                    done();
+                });
         });
 
-        request(app).get('/api/wallpapers')
-            .end(function(err, res) {
-              expect(res.statusCode).to.equal(200);
-              expect(res.body).to.be.an('array');
-              expect(res.body[0].title).to.equal(wallpaper.title);
-              done();
-            });
+        
     })
 
     it("returns a wallpaper created", function(done) {

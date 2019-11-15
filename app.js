@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 Wallpaper = require('./models/wallpaper');
 
 // Connect to Mongoose
-mongoose.connect(config.mongourl);
+mongoose.connect(config.mongourl, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => console.log('DB Connected!1'))
+.catch(err => { console.log(Error, err.message);});
 var db = mongoose.connection;
 
 app.get('/', (req, res) => {

@@ -4,7 +4,8 @@
   "description": "A simple wallpapers api",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha"
+    "test": "NODE_ENV=test mocha",
+    "lala": "node lala.js"
   },
   "author": "\"Federico Nicolás Flores <flores.federico.nicolas@gmail.com>",
   "license": "ISC",
@@ -14,7 +15,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.2.1",
+    "mocha": "^6.2.2",
     "supertest": "^4.0.2"
   }
 }
